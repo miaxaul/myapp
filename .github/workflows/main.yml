@@ -43,7 +43,7 @@ jobs:
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
 
       - name: create Dockerrun.aws.json
-        run:
+        run: |
           cat > Dockerrun.aws.json << EOF
           {
             "AWSEBDockerrunVersion": "1",
@@ -59,9 +59,9 @@ jobs:
           EOF
 
       - name: Zip Artifacts
-        run:
+        run: |
           Zip -f artifacts.zip
 
       - name: Upload artifact to S3
-        run:
+        run: |
           aws s3 cp Dockerrun.aws.json s3://${{ env.S3_BUCKET }}/Dockerrun.aws.json-${{ env.PIPELINE_ID }}
