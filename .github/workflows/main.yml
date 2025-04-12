@@ -46,6 +46,7 @@ jobs:
         run:
           cat > Dockerrun.aws.json << EOF
           {
+            "AWSEBDockerrunVersion": "1",
             "Image": {
               "Name": "${{ steps.login-ecr.outputs.registry }}/${{ env.EB_APPLICATION_NAME }}:{{ env.PIPELINE_ID }}",
             "Ports": [
