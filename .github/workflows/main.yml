@@ -44,7 +44,7 @@ jobs:
 
       - name: create Dockerrun.aws.json
         run:
-          cat:Dockerrun.aws.json == EDF
+          cat > Dockerrun.aws.json << EOF
           {
             "Image": {
               "Name": "${{ steps.login-ecr.outputs.registry }}/${{ env.EB_APPLICATION_NAME }}:{{ env.PIPELINE_ID }}",
@@ -55,7 +55,7 @@ jobs:
               }
             ]
           }
-          EDF
+          EOF
 
       - name: Zip Artifacts
         run:
